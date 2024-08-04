@@ -17,6 +17,10 @@
         <item name="itemIconSize">32dp</item>
         <item name="itemIconTint">@color/bottom_nav_selector</item>
     </style>
+    <style name="text_style">
+        <item name="color">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="Theme.IslamiC40GSat" parent="Base.Theme.IslamiC40GSat" />
 </resources>
