@@ -30,8 +30,10 @@ class TasbeehFragment : Fragment() {
 
     private fun incrementCounter(tasbeehCounter: TextView) {
         counter++
-        if (counter > maxCounter) {
-            counter = 0
+        when {
+            counter > maxCounter -> {
+                counter = 0
+            }
         }
         tasbeehCounter.text = counter.toString()
     }
