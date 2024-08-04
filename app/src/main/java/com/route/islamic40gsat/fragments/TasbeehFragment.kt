@@ -2,45 +2,44 @@ package com.route.islamic40gsat.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.route.islamic40gsat.R
+import com.route.islamic40gsat.databinding.FragmentTasbeehBinding
 
 class TasbeehFragment : Fragment() {
 
     private var counter = 0
-    private var maxCounter = 30
+    private val maxCounter = 30
+    private var _binding: FragmentTasbeehBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_tasbeeh, container, false)
-        val subhanAllahTv: TextView = view.findViewById(R.id.tasbeh_click)
-        val tasbeehCounter: TextView = view.findViewById(R.id.tasbeh_counter)
-        subhanAllahTv.setOnClickListener{incrementCounter(tasbeehCounter)}
+
+        _binding = FragmentTasbeehBinding.inflate(inflater, container, false)
+        val view = binding.root
 
 
-        return view
+        binding.tasbehClick.setOnClickListener { incrementCounter() }
+
+        return binding.root
     }
 
-    private fun incrementCounter(tasbeehCounter: TextView) {
+    private fun incrementCounter() {
         counter++
-        when {
-            counter > maxCounter -> {
-                counter = 0
-            }
+        if (counter > maxCounter) {
+            counter = 0
         }
-        tasbeehCounter.text = counter.toString()
+
+        binding.tasbehCounter.text = counter.toString()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
-
 }
